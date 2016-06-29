@@ -1,0 +1,109 @@
+/*------------------------------------*\
+    mixin & variable
+\*------------------------------------*/
+@mixin transition($duration) {
+    -webkit-transition: $duration;
+    -moz-transition: $duration;
+    -ms-transition: $duration;
+    -o-transition: $duration;
+    transition: $duration;
+}
+
+@mixin font($font, $style: normal, $weight: normal, $size: 18px) {
+    font-family: $font;
+    font-style:  $style;
+    font-weight: $weight;
+    font-size: $size;
+}
+
+
+
+
+
+
+/*------------------------------------*\
+    Universal Setting
+\*------------------------------------*/
+.ldp-stage#ll0406 {
+	width: 715px;
+	overflow: hidden;
+	margin: 0px auto;
+	@include font('Tahoma');
+	text-align: center;
+	padding: 50px 0px;
+
+	.header {
+		/*background-color: green;*/
+	}
+
+	.purchase {
+		/*background-color: blue;*/
+		width: 500px;
+	    margin: 25px auto 35px;
+	    line-height: 1.6;
+		@include font('Tahoma');
+	}
+
+	h4 {
+		@include font('Tahoma', normal, bold);
+		margin-bottom: 10px;
+	}
+
+	p {
+		font-size: 15px;
+	    color: #666;
+	    width: 491px;
+	    display: block;
+	    margin: 0px auto;
+	    margin-bottom: 40px;
+	    letter-spacing: -0.2px;
+	    line-height: 1.6
+	}
+
+	.btn {
+		background-color: #ffffff;
+		margin-bottom: 50px;
+		opacity: 1.0;
+		cursor: pointer;
+		@include transition(.2s);
+	}
+
+	.btn:hover {
+		opacity: 0.8;
+		@include transition(.2s);
+	}
+
+	.terms {
+		@include font('Arial', normal, normal, 11px);
+		text-align: left;
+		line-height: 1.8;
+		color: #333;
+		display: block;
+		border-top: 1px solid #b2b2b2;
+		padding-top: 24px;
+		margin-top: 14px;
+
+		a {
+			color: #1300ee;
+			opacity: 1.0;
+			@include transition(.2s);
+
+			&:hover {
+				opacity: 0.8;
+				@include transition(.2s);				
+			}
+		}
+	}
+
+	/*  for IE  */
+	a, a img {
+	    border:none;
+	    outline:none;
+		text-decoration: blink;
+	}
+
+}	
+
+
+
+
