@@ -23,26 +23,38 @@
             <a href="#"><h1>BROCCOLI & CO.</h1></a>
         </div>
     </div>
+    
+    <!-- main -->
     <div class="main">
         <div class="cont">
             
             <h2 class="title">A better way<br/> to enjoy every day.</h2>
             <h4 class="sub">Be the first to know when we launch.</h4>
-            <button class="button">Request an invite</button>
+            <button class="button requestInvite">
+                Request an invite
+                <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+            </button>
         </div>
     </div>
     
-   <!--  <footer>
-        <a href="http://www.polymer-project.org/" target="_blank">
-            <img src="https://www.polymer-project.org/images/logos/p-logo.svg">
-        </a>
+    <!-- footer -->
+    <footer>
         <p>
-            You Gotta Love♥<a href="http://www.polymer-project.org/" target="_blank">Google</a>
+            Made with ♥ in Melbourne
         </p>
-    </footer> -->
+
+        <p>
+            2016 Broccoli & Co. All rights reserved.
+        </p>
+    </footer>  
+
+    <!-- black cover -->
+    <div class="blackCover"></div>
 
     <!-- Form -->
     <form ng-controller="FormController" ng-submit="submit()">
+        <h2>Request an invite</h2>
+
         <div class="group">
             <input type="text" name="name" ng-model="user.name">
             <span class="highlight"></span><span class="bar"></span>
@@ -58,10 +70,12 @@
             <span class="highlight"></span><span class="bar"></span>
             <label>Confirm Email</label>
         </div>
-        
-        <button type="submit" class="button buttonBlue">
-            Subscribe
-            <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+        <div class="allDoneMessage">
+            You will be one of the first to experience Broccoli & Co. when we launch.
+        </div>
+        <button type="submit" class="button buttonBlue sendBtn" id="SendBtn">
+            Send
+            <!-- <div class="ripples buttonRipples" id="SendBtn"><span class="ripplesCircle"></span></div> -->
         </button>
     </form>
 
@@ -78,22 +92,35 @@
             $scope.user = {};
             $scope.submit = function() {
                 var theUser = $scope.user;
-                console.log(theUser);
+                $("#SendBtn").text("Sending, please waiting");
+                $("#SendBtn").attr("disabled", "disabled");
 
+                // ajax post
                 $http.post(
                         "https://l94wc2001h.execute-api.ap-southeast-2.amazonaws.com/prod/fake-auth",theUser
                 ).then(
                     function(response) {
                         $scope.data = response.data;
                         console.log(response.data);
+                        btnBack();
                     },
                     function(err) {
-                        console.log("error")
+                        btnBack();
+                        $('form').append('<p class="error">Ooops, something wrong!!</p>')
                     }
-
                 )
             }
         });
+
+
+        function btnBack() {
+            var SendBtn = $("#SendBtn")
+            SendBtn.removeAttr("disabled").text("Send");
+        }
+
+        function allDone() {
+            $('form h2').text('All Done!!');
+        }
     </script>		
 
 </body>

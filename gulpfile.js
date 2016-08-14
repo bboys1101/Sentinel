@@ -13,7 +13,7 @@ gulp.task('watch', function () {
         browserSync.reload();
     });
 
-    gulp.watch('js/original/*.js', ['scripts']);
+    gulp.watch('js/original/*.js', ['script']);
     gulp.watch('scss/*.scss', ['styles']);
 });
 
