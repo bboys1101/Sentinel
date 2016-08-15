@@ -32,3 +32,26 @@ $(window, document, undefined).ready(function() {
 
 
 });
+
+
+
+function btnBack() {
+    var SendBtn = $("#SendBtn")
+    SendBtn.removeAttr("disabled").text("Send");
+}
+
+function btnBackSuc() {
+    var SendBtn = $("#SendBtn")
+    SendBtn.text("OK");
+}
+
+
+function allDone() {
+    $('form h2').text('All Done!!');
+    $('form .group').fadeOut(500);
+    $('.allDoneMessage').delay(500).fadeIn(500);
+
+    setTimeout(function() {
+        location.reload();
+    },1800);
+}

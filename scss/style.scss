@@ -190,6 +190,17 @@ body {
 			margin-top: 0px; 
 		}
 
+		.allDoneMessage {
+			width: 314px;
+			margin-top: 20px;
+			margin-bottom: 40px;
+			text-align: center;
+			display: none;
+		}
+
+		.msg-block {
+			color: $BrPink;
+		}
 	}
 }
 

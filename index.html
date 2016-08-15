@@ -52,28 +52,35 @@
     <div class="blackCover"></div>
 
     <!-- Form -->
-    <form ng-controller="FormController" ng-submit="submit()">
+    <form ng-controller="FormController" ng-submit="submit()" name="submitForm">
         <h2>Request an invite</h2>
 
         <div class="group">
-            <input type="text" name="name" ng-model="user.name">
+            <input type="text" name="name" ng-model="user.name" required>
             <span class="highlight"></span><span class="bar"></span>
             <label>Full Name</label>
         </div>
         <div class="group">
-            <input type="email" name="email" ng-model="user.email">
+            <!-- <input type="email" name="email" ng-model="user.email" required> -->
+            <input type="email" id="mail1" name="mail1" ng-model="user.email" required/>
             <span class="highlight"></span><span class="bar"></span>
             <label>Email</label>
         </div>
          <div class="group">
-            <input type="email">
+            <input type="email" id="mail2" name="mail2" ng-model="mail2" required pw-check="mail1"/>
             <span class="highlight"></span><span class="bar"></span>
             <label>Confirm Email</label>
+            <div class="msg-block" ng-show="submitForm.$error">
+                <span class="msg-error" ng-show="submitForm.mail2.$error.pwmatch && submitForm.mail2.$dirty">
+                    Email don't match.
+                </span>
+            </div>
         </div>
+        
         <div class="allDoneMessage">
             You will be one of the first to experience Broccoli & Co. when we launch.
         </div>
-        <button type="submit" class="button buttonBlue sendBtn" id="SendBtn">
+        <button type="submit" class="button buttonBlue sendBtn" id="SendBtn" ng-disabled="submitForm.$invalid">
             Send
             <!-- <div class="ripples buttonRipples" id="SendBtn"><span class="ripplesCircle"></span></div> -->
         </button>
@@ -83,46 +90,11 @@
     <script type="text/javascript" src="./lib/jQuery/jquery-2.1.3.min.js"></script>
     <!-- angularjs -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
-    <script src="js/minify/index.js"></script>
-    
-    <script>
 
-        var app = angular.module('myApp', []);
-        app.controller('FormController', function($scope, $http) {
-            $scope.user = {};
-            $scope.submit = function() {
-                var theUser = $scope.user;
-                $("#SendBtn").text("Sending, please waiting");
-                $("#SendBtn").attr("disabled", "disabled");
-
-                // ajax post
-                $http.post(
-                        "https://l94wc2001h.execute-api.ap-southeast-2.amazonaws.com/prod/fake-auth",theUser
-                ).then(
-                    function(response) {
-                        $scope.data = response.data;
-                        console.log(response.data);
-                        btnBack();
-                    },
-                    function(err) {
-                        btnBack();
-                        $('form').append('<p class="error">Ooops, something wrong!!</p>')
-                    }
-                )
-            }
-        });
-
-
-        function btnBack() {
-            var SendBtn = $("#SendBtn")
-            SendBtn.removeAttr("disabled").text("Send");
-        }
-
-        function allDone() {
-            $('form h2').text('All Done!!');
-        }
-    </script>		
-
+    <!-- js file -->
+    <script type="text/javascript" src="js/original/controller.js"></script>
+    <script type="text/javascript" src="js/original/directive.js"></script>
+    <script type="text/javascript" src="js/minify/index.js"></script>
 </body>
 
 

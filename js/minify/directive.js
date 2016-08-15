@@ -1,0 +1,1 @@
+angular.module("myApp.directives",[]).directive("pwCheck",[function(){return{require:"ngModel",link:function(e,n,i,t){var a="#"+i.pwCheck;n.add(a).on("keyup",function(){e.$apply(function(){t.$setValidity("pwmatch",n.val()===$(a).val())})})}}}]);
