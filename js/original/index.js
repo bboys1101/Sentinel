@@ -26,7 +26,7 @@ $(window, document, undefined).ready(function() {
       $('form, .blackCover').addClass('active');
   });
 
-  $('body').on('click','.blackCover', function() {
+  $('body').on('click','.closeBtn', function() {
       $('form, .blackCover').removeClass('active');
   });
 

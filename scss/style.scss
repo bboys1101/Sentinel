@@ -27,8 +27,7 @@ $BrPink: #f75279;
 }
 
 
-
-
+$breakpoint-tablet: 768px;
 
 
 /*------------------------------------*\
@@ -142,7 +141,7 @@ body {
 
 	form {
 		position: fixed;
-		top: -520px;
+		top: -600px;
 		left: 0px;
 		right: 0px;
 		margin: auto; 
@@ -153,7 +152,7 @@ body {
 
 		&.active {
 			top: 50%;
-			margin-top: -205px;
+			margin-top: -235px;
 			@include transition(all 0.3s ease-out);
 		}
 
@@ -201,6 +200,29 @@ body {
 		.msg-block {
 			color: $BrPink;
 		}
+
+		.closeBtn {
+			position: absolute;
+		    top: 4px;
+		    right: 4px;
+		    width: 22px;
+		    cursor: pointer;
+		    opacity: 0.6;	
+		    @include transition(opacity 0.1s ease-out);
+
+		    &:hover {
+		    	opacity: 1.0;
+		    	@include transition(opacity 0.1s ease-out);
+		    }
+		}
 	}
 }
 
+/*------------------------------------*\
+    media queries
+\*------------------------------------*/
+@media (max-width: $breakpoint-tablet) {
+  		body .navi-wrap .logo-wrap {
+  			text-align: center;
+  		}
+}
