@@ -14,7 +14,8 @@ app.controller('FormController', function($scope, $http) {
 
         // ajax post
         $http.post(
-                "https://l94wc2001h.execute-api.ap-southeast-2.amazonaws.com/prod/fake-auth",theUser
+                "https://l94wc2001h.execute-api.ap-southeast-2.amazonaws.com/prod/fake-auth",
+                theUser
         ).then(
             function(response) {
                 $scope.data = response.data;
